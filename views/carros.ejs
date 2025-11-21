@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Carros</title>
+    <style>
+        .esgotado { color: red; font-weight: bold; }
+        .card-carro { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        .btn-vender { background-color: green; color: white; }
+        .btn-excluir { background-color: red; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo(a), <%= nome %>!</h1>
+
+    <fieldset>
+        <legend>Cadastrar Novo Carro</legend>
+        <form action="/cadastrar-carro?nome=<%= nome %>" method="POST">
+            <input type="text" name="modelo" placeholder="Modelo do Carro" required>
+            <input type="number" name="ano" placeholder="Ano" required>
+            <input type="number" name="quantidade" placeholder="Quantidade em Estoque" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </fieldset>
+
+    <hr>
+
+    <h2>Carros Disponíveis:</h2>
+
+    <% if (listaCarros.length > 0) { %>
+        <% listaCarros.forEach(function(carro) { %>
+            <div class="card-carro">
+                <h3><%= carro.modelo %> (<%= carro.ano %>)</h3>
+                
+                <p>Estoque: 
+                    <% if (carro.quantidade > 0) { %>
+                        <strong><%= carro.quantidade %></strong>
+                    <% } else { %>
+                        <span class="esgotado">ESGOTADO</span>
+                    <% } %>
+                </p>
+
+                <div style="display: flex; gap: 10px;">
+                    
+                    <% if (carro.quantidade > 0) { %>
+                        <form action="/vender-carro/<%= carro._id %>?nome=<%= nome %>" method="POST">
+                            <button type="submit" class="btn-vender">Vender</button>
+                        </form>
+                    <% } else { %>
+                        <button disabled>Indisponível</button>
+                    <% } %>
+
+                    <form action="/pagina-editar/<%= carro._id %>" method="GET">
+                        <input type="hidden" name="nome" value="<%= nome %>">
+                        <button type="submit" style="background-color: blue; color: white;">Editar</button>
+                    </form>
+
+                    <form action="/deletar-carro/<%= carro._id %>?_method=DELETE&nome=<%= nome %>" method="POST">
+                        <button type="submit" class="btn-excluir">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>Nenhum carro cadastrado.</p>
+    <% } %>
+
+</body>
+</html>

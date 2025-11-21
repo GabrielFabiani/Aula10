@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Carro</title>
+</head>
+<body>
+    <h1>Editar Carro</h1>
+            
+    <form id="formulario-editar" action="" method="POST">    
+        <label>Novo Modelo:</label>
+        <input type="text" name="novoModelo" placeholder="Digite o novo modelo" required> 
+        <br><br>   
+        <button type="submit">Confirmar Alteração</button>
+    </form>
+            
+    <br>
+    <a id="link-voltar" href="#">Cancelar e Voltar</a>
+
+    <script>
+        // Pega os parâmetros que estão na URL lá em cima (ex: ...html?id=123&nome=Gabriel)
+        const params = new URLSearchParams(window.location.search);
+        const idCarro = params.get('id');
+        const nomeUsuario = params.get('nome');
+
+        // Se tiver ID e Nome, preenche o HTML
+        if (idCarro && nomeUsuario) {
+            const form = document.getElementById('formulario-editar');
+            const link = document.getElementById('link-voltar');
+
+            // Aqui no JAVASCRIPT o `${}` funciona!
+            // Montamos a URL correta para o servidor:
+            form.action = `/atualizar-carro/${idCarro}?_method=PUT&nome=${encodeURIComponent(nomeUsuario)}`;
+            
+            // Arrumamos o link de voltar
+            link.href = `/carros?nome=${encodeURIComponent(nomeUsuario)}`;
+        } else {
+            alert("Erro: ID do carro faltando na URL.");
+        }
+    </script>
+</body>
+</html>

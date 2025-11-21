@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+      <div class="login-page">
+        <div class="form">
+            <form method="post" action="/cadastrar">
+                <div class="cabec">
+                <!-- <img src="../img/cadastro_icone.png"> -->
+                <h2>Cadastro</h2>
+                </div>
+                <p>Nome completo: <input type="text" name="nomecompleto" required></p>
+                <p>Email: <input type="email" name="email" required></p>
+                <p>Senha: <input type="password" name="senha" required></p>
+                <button type="submit" value="Salvar Cadastro">Cadastre-se</button>
+                <p class="message">Já tem cadastro? <a href="../HTML/login.html">Faça login!</a></p>
+            </form>
+        </div>
+        <!-- <div class="voltar">
+            <p><a class="link-projetos" href="/">Projetos</a></p>
+        </div> -->
+    </div>
+</body>
+</html>
