@@ -1,0 +1,2 @@
+Link para Banco Mongo
+mongodb+srv://gabriel_fabiani_admin:Bkb@2021@full-stack.etb8gnz.mongodb.net/?appName=Full-Stack
